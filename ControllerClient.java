@@ -1,3 +1,5 @@
+package com.tresk.controller;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -7,18 +9,20 @@ import java.net.Socket;
 
 public class ControllerClient {
 
-	public String serverName = "111.119.237.172";
+	public String serverName = "18.191.207.153";
 	public int port = 8082;
+	
+	public String name = "C1";
 	
 	public static void main(String[] args) {
 	
 		ControllerClient client = new ControllerClient();
-		client.sendCommand("logoff");
+		client.sendCommand("C1","logoff","C2");
 		System.out.println("command sent");
 	}
 	
 	
-	public void sendCommand(String cmd)
+	public void sendCommand(String from,String cmd,String to)
 	{
 		
 	      try {
@@ -30,7 +34,9 @@ public class ControllerClient {
 	         OutputStream outToServer = client.getOutputStream();
 	         DataOutputStream out = new DataOutputStream(outToServer);
 	         
-	         out.writeUTF(cmd + client.getLocalSocketAddress());
+	         //out.writeUTF(cmd + client.getLocalSocketAddress());
+	         
+	         out.writeUTF(from+" "+cmd+" "+to);
 	         
 	         InputStream inFromServer = client.getInputStream();
 	         DataInputStream in = new DataInputStream(inFromServer);
