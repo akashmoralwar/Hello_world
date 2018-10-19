@@ -53,12 +53,21 @@ public class ControllerServer {
 		            {
 		            	for(Command cmd : cmds)
 		            	{
+		            		Command match = null;
+		            	for(Command cmd : cmds)
+		            	{
 		            		if(cmd.getTo().equalsIgnoreCase(tokens[0]))
 		            		{
 		            			result = cmd.getCmd()+" "+cmd.getFrom();
-						cmds.remove(cmd);
+		            			match = cmd;
+		            			break;
 		            		}
 		            	}
+		            	if(match!=null)
+		            	{
+		            		cmds.remove(match);
+		            	}
+		            }
 		            }else if(tokens.length==3) //client giving command
 		            {
 		            	Command cmd = new Command(tokens[0],tokens[1],tokens[2]);
