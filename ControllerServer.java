@@ -56,6 +56,7 @@ public class ControllerServer {
 		            		if(cmd.getTo().equalsIgnoreCase(tokens[0]))
 		            		{
 		            			result = cmd.getCmd()+" "+cmd.getFrom();
+						cmds.remove(cmd);
 		            		}
 		            	}
 		            }else if(tokens.length==3) //client giving command
