@@ -51,8 +51,7 @@ public class ControllerServer {
 		            
 		            if(tokens.length==1) //client asking
 		            {
-		           
-		            		Command match = null;
+		            	Command match = null;
 		            	for(Command cmd : cmds)
 		            	{
 		            		if(cmd.getTo().equalsIgnoreCase(tokens[0]))
@@ -66,7 +65,6 @@ public class ControllerServer {
 		            	{
 		            		cmds.remove(match);
 		            	}
-		            }
 		            }else if(tokens.length==3) //client giving command
 		            {
 		            	Command cmd = new Command(tokens[0],tokens[1],tokens[2]);
