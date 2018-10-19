@@ -7,7 +7,7 @@ import java.net.Socket;
 
 public class ControllerClient {
 
-	public String serverName = "111.119.237.172/32";
+	public String serverName = "111.119.237.172";
 	public int port = 8082;
 	
 	public static void main(String[] args) {
