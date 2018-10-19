@@ -51,8 +51,7 @@ public class ControllerServer {
 		            
 		            if(tokens.length==1) //client asking
 		            {
-		            	for(Command cmd : cmds)
-		            	{
+		           
 		            		Command match = null;
 		            	for(Command cmd : cmds)
 		            	{
