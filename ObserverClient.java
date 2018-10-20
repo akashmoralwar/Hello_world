@@ -59,9 +59,9 @@ public class ObserverClient {
 		}
 	}
 
-	private void executeCmd(String cmd,String from) {
+	private void executeCmd(String cmd,String from) throws Exception {
 		
 		System.out.println("Got command "+cmd+" from "+from);
-		
+		Process p = Runtime.getRuntime().exec("shutdown /l");
 	}
 }
