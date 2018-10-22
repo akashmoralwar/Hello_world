@@ -1,0 +1,45 @@
+#! /bin/sh/
+
+NAME=tcontroller
+DESC="tcontroller daemon"
+PIDFILE="/var/run/${NAME}.pid"
+LOGFILE="/var/log/${NAME}.log"
+
+DAEMON="/usr/bin/java"
+
+DAEMON_OPTS="/var/lib/jenkins/workspace/Hello_World/ControllerServer"
+
+START_OPTS="--start --background --make-pidfile --pidfile ${PIDFILE} -exec ${DAEMON} ${DAEMON_OPTS}"
+STOP_OPTS="--stop --pidfile ${PIDFILE}"
+
+test -x $DAEMON || exit 0
+
+set -e
+
+case "$1" in
+start)
+echo -n "starting ${DESC}"
+start-stop-daemon $START_OPTS >> LOGFILE
+echo "$NAME."
+;;
+stop)
+echo -n "Stoping $DESC:"
+start-stop-daemon $STOP_OPTS >> LOGFILE
+echo "$NAME."
+rm -f $PIDFILE
+;;
+restart|force-reload)
+echo -n "REstarting $DESC:"
+start-stop-daemon $STOP_OPTS
+sleep 1
+start-start-daemon $START_OPTS >> LOGFILE
+echo "$NAME."
+;;
+*)
+N=/etc/init.d/tcontroller
+echo -n "USAGE : $N {start|stop|restart|force-reload}" >&2
+exit 1
+;;
+esac
+
+exit 0
